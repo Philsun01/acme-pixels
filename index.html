@@ -17,6 +17,11 @@
         .green {
           background-color: green;
         }
+
+        .blue {
+          background-color: blue;
+        }
+
         .color-toggle {
           background-color: red;
         }
@@ -99,15 +104,23 @@ grid1.addEventListener('click',(ev)=>{
   console.log(subCell);
 
 
+//Toggle the cell with a color when clicked
   cell1.classList.toggle('color-toggle');
+
+  let backgroundCol = checkCol(cell1);
+
+  cell1.classList.add(backgroundCol);
 
 });
 
 
-//Toggle the cell with a color when clicked
-
-
-
+function checkCol(cellInfo) {
+  if (cellInfo.classList.contains('red') &&  cellInfo.classList.contains('color-toggle')) {
+    return "green";
+  } else {
+    return "blue";
+  }
+};
 //Add color swatches to set selected color
 
 
