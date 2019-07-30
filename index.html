@@ -14,7 +14,12 @@
         height: 100%
 
         }
-
+        .green {
+          background-color: green;
+        }
+        .red {
+          background-color: red;
+        }
 
 
     </style>
@@ -42,20 +47,16 @@ const generateHTML = ()=> {
 
 let rowHTML = "";
 
-for (let i=0;i<5;i++)  {
+  for (let i=0;i<5;i++)  {
 
-  rowHTML += `<div class='div-row'>`
-  for (let j=0;j<5;j++)  {
+    rowHTML += `<div class='div-row'>`;
+    for (let j=0;j<5;j++)  {
 
-  rowHTML += `<div class='div-cell' row='${i}' col='${j}'>${i}, ${j}</div>`
-
+      rowHTML += `<div class='div-cell' row='${i}' col='${j}'>${i}, ${j}</div>`;
+    }
+    rowHTML += `</div>`;
 
   }
-  rowHTML += `</div>`
-
-}
-
-
 return rowHTML;
 }
 
@@ -73,9 +74,6 @@ return rowHTML;
 return rows;
 */
 
-
-
-
 //Create render function to render HTML grid
 
 const render = () => {
@@ -86,6 +84,24 @@ const html = generateHTML();
 render();
 
 //Add event handler to cells
+
+const grid1 = document.querySelector('#grid');
+grid1.addEventListener('click',(ev)=>{
+  const cell1 = ev.target;
+  const rowClicked = cell1.getAttribute("row");
+  const colClicked = cell1.getAttribute("col");
+
+  const gridArray = [...grid1.children];
+  const gridArrayCol = [...grid1.parentNode.children];
+
+
+  const subCell = gridArray[rowClicked].children[colClicked];
+  console.log(subCell);
+
+
+  cell1.classList.add('green');
+
+});
 
 
 //Toggle the cell with a color when clicked
